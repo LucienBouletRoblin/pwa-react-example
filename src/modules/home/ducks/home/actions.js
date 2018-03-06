@@ -28,3 +28,101 @@ export const getHomePosts = () => {
       });
   };
 };
+
+export const createHomePosts = () => {
+  return dispatch => {
+    dispatch({
+      type: types.CREATE
+    });
+    axios({
+      method: "post",
+      url: "https://jsonplaceholder.typicode.com/posts",
+      body: {
+        title: "test",
+        body: "test",
+        userId: 1
+      },
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(response => {
+        if (response.data) {
+          dispatch({
+            type: types.CREATE_SUCCESS,
+            payload: response.data
+          });
+        } else if (response.data.error.code === 100) {
+        }
+      })
+      .catch(err => {
+        dispatch({
+          type: types.CREATE_ERROR,
+          payload: err
+        });
+      });
+  };
+};
+
+export const updateHomePosts = () => {
+  return dispatch => {
+    dispatch({
+      type: types.CREATE
+    });
+    axios({
+      method: "put",
+      url: "https://jsonplaceholder.typicode.com/posts/1",
+      body: {
+        id: 1,
+        title: "updated",
+        body: "updated",
+        userId: 1
+      },
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(response => {
+        if (response.data) {
+          dispatch({
+            type: types.CREATE_SUCCESS,
+            payload: response.data
+          });
+        } else if (response.data.error.code === 100) {
+        }
+      })
+      .catch(err => {
+        dispatch({
+          type: types.CREATE_ERROR,
+          payload: err
+        });
+      });
+  };
+};
+
+export const deleteHomePosts = () => {
+  return dispatch => {
+    dispatch({
+      type: types.CREATE
+    });
+    axios({
+      method: "DELETE",
+      url: "https://jsonplaceholder.typicode.com/posts/1"
+    })
+      .then(response => {
+        if (response.data) {
+          dispatch({
+            type: types.CREATE_SUCCESS,
+            payload: response.data
+          });
+        } else if (response.data.error.code === 100) {
+        }
+      })
+      .catch(err => {
+        dispatch({
+          type: types.CREATE_ERROR,
+          payload: err
+        });
+      });
+  };
+};

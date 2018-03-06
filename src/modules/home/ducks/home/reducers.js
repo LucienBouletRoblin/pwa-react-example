@@ -2,6 +2,8 @@ import * as types from "./types";
 
 const initialState = {
   home: [],
+  createdPost: {},
+  creatingPost: false,
   loadingHomeStuffs: false
 };
 
@@ -24,6 +26,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loadingHomeStuffs: false
+      };
+    }
+    case types.CREATE: {
+      return {
+        ...state,
+        creatingPost: true
+      };
+    }
+    case types.CREATE_SUCCESS: {
+      return {
+        ...state,
+        creatingPost: false,
+        createdPost: action.payload
+      };
+    }
+    case types.CREATE_ERROR: {
+      return {
+        ...state,
+        creatingPost: false
       };
     }
 
