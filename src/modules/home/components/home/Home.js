@@ -5,6 +5,7 @@ import Layout from "modules/common/components/Layout";
 
 class Home extends React.Component {
   componentDidMount() {
+    this.props.getHomePosts();
     document.title = "Home";
   }
 

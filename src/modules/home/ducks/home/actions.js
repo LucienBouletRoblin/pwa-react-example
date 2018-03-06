@@ -1,22 +1,21 @@
 import axios from "axios";
 import * as types from "./types";
 
-export const getHomeStuffs = () => {
+export const getHomePosts = () => {
   return dispatch => {
     dispatch({
       type: types.FETCH_ALL
     });
     axios({
-      method: "post",
-      url: "/api/home",
-      data: {},
-      withCredentials: true
+      method: "get",
+      url: "https://jsonplaceholder.typicode.com/posts"
+      // data: {},
     })
       .then(response => {
-        if (response.data.result) {
+        if (response.data) {
           dispatch({
             type: types.FETCH_ALL_SUCCESS,
-            payload: response.data.result
+            payload: response.data
           });
         } else if (response.data.error.code === 100) {
         }
