@@ -22,13 +22,13 @@ class Get extends React.Component {
     const { num } = this.state;
 
     return (
-      <Grid container="row" justify="space-between">
-        <Grid item xs="12">
-          <Grid container="row">
-            <Grid item xs="12" sm="9">
+      <Grid container justify="space-between">
+        <Grid item xs={12}>
+          <Grid container>
+            <Grid item xs={12} sm={9}>
               <Typography variant="title">Getting posts:</Typography>
             </Grid>
-            <Grid item xs="12" sm="3">
+            <Grid item xs={12} sm={3}>
               <Button
                 color="primary"
                 variant="raised"
@@ -39,18 +39,18 @@ class Get extends React.Component {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs="12">
-          <Typography variant="body">
+        <Grid item xs={12}>
+          <Typography variant="body1">
             Id: {gets.length >= 1 ? gets[num].id : ""}
           </Typography>
         </Grid>
-        <Grid item xs="12">
-          <Typography variant="body">
+        <Grid item xs={12}>
+          <Typography variant="body1">
             Title: {gets.length >= 1 ? gets[num].title : ""}
           </Typography>
         </Grid>
-        <Grid item xs="12">
-          <Typography variant="body">
+        <Grid item xs={12}>
+          <Typography variant="body1">
             Post: {gets.length >= 1 ? gets[num].body : ""}
           </Typography>
         </Grid>

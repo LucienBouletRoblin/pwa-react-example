@@ -4,7 +4,7 @@ import { actions as home } from "modules/home/ducks/home";
 
 const mapStateToProps = store => {
   return {
-    createdPost: store.Home.createdPost
+    postCreated: store.Home.postCreated
   };
 };
 

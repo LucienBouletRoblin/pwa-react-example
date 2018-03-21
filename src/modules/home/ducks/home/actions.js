@@ -9,7 +9,6 @@ export const getHomePosts = () => {
     axios({
       method: "get",
       url: "https://jsonplaceholder.typicode.com/posts"
-      // data: {},
     })
       .then(response => {
         if (response.data) {
@@ -50,7 +49,7 @@ export const createHomePosts = () => {
         if (response.data) {
           dispatch({
             type: types.CREATE_SUCCESS,
-            payload: response.data
+            payload: true
           });
         } else if (response.data.error.code === 100) {
         }
@@ -106,7 +105,7 @@ export const deleteHomePosts = () => {
       type: types.CREATE
     });
     axios({
-      method: "DELETE",
+      method: "delete",
       url: "https://jsonplaceholder.typicode.com/posts/1"
     })
       .then(response => {
