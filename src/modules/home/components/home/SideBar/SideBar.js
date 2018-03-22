@@ -11,24 +11,25 @@ const styles = {
   }
 };
 
-const SideBar = props => {
-  const { classes } = props;
-
-  return (
-    <Grid
-      container
-      direction="column"
-      justify="center"
-      className={classes.main}
-    >
-      <Grid item>
-        <Typography variant="title">
-          Network status:{" "}
-          {navigator.onLine ? <NetworkWifiIcon /> : <AirPlaneModeActiveIcon />}
-        </Typography>
+class SideBar extends React.Component {
+  render() {
+    const { classes, online } = this.props;
+    return (
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        className={classes.main}
+      >
+        <Grid item>
+          <Typography variant="title">
+            Network status:{" "}
+            {online ? <NetworkWifiIcon /> : <AirPlaneModeActiveIcon />}
+          </Typography>
+        </Grid>
       </Grid>
-    </Grid>
-  );
-};
+    );
+  }
+}
 
 export default withStyles(styles)(SideBar);

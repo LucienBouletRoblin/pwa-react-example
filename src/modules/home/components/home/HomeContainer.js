@@ -2,8 +2,14 @@ import { connect } from "react-redux";
 import Home from "./Home";
 import { actions as home } from "modules/home/ducks/home";
 
-const mapDispatchToProps = {
-  getHomePosts: home.getHomePosts
+const mapStateToProps = store => {
+  return {
+    online: store.offline.online
+  };
 };
 
-export default connect(null, mapDispatchToProps)(Home);
+const mapDispatchToProps = {
+  getPosts: home.getPosts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

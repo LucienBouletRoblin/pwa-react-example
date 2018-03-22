@@ -5,12 +5,12 @@ import Layout from "modules/common/components/Layout";
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.getHomePosts();
+    this.props.getPosts();
     document.title = "Home";
   }
-
   render() {
-    return <Layout content={<Main />} sidebar={<SideBar />} />;
+    const { online } = this.props;
+    return <Layout content={<Main />} sidebar={<SideBar online={online} />} />;
   }
 }
 

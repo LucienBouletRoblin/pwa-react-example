@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as types from "./types";
 
-export const getHomePosts = () => {
+export const getPosts = () => {
   return dispatch => {
     dispatch({
       type: types.FETCH_ALL
@@ -28,7 +28,7 @@ export const getHomePosts = () => {
   };
 };
 
-export const createHomePosts = () => ({
+export const createPosts = () => ({
   type: types.CREATE,
   payload: {},
   meta: {
@@ -57,65 +57,53 @@ export const createHomePosts = () => ({
   }
 });
 
-export const updateHomePosts = () => {
-  return dispatch => {
-    dispatch({
-      type: types.CREATE
-    });
-    axios({
-      method: "put",
-      url: "https://jsonplaceholder.typicode.com/posts/1",
-      body: {
-        id: 1,
-        title: "updated",
-        body: "updated",
-        userId: 1
+export const updatePosts = postId => ({
+  type: types.UPDATE,
+  payload: { postId },
+  meta: {
+    offline: {
+      effect: {
+        url: "https://jsonplaceholder.typicode.com/posts/" + postId,
+        method: "PUT",
+        body: {
+          id: postId,
+          title: "updated",
+          body: "updated",
+          userId: 1
+        },
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
       },
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
+      commit: {
+        type: types.UPDATE_SUCCESS,
+        meta: { postId }
+      },
+      rollback: {
+        type: types.UPDATE_ERROR,
+        meta: { postId }
       }
-    })
-      .then(response => {
-        if (response.data) {
-          dispatch({
-            type: types.CREATE_SUCCESS,
-            payload: response.data
-          });
-        } else if (response.data.error.code === 100) {
-        }
-      })
-      .catch(err => {
-        dispatch({
-          type: types.CREATE_ERROR,
-          payload: err
-        });
-      });
-  };
-};
+    }
+  }
+});
 
-export const deleteHomePosts = () => {
-  return dispatch => {
-    dispatch({
-      type: types.CREATE
-    });
-    axios({
-      method: "delete",
-      url: "https://jsonplaceholder.typicode.com/posts/1"
-    })
-      .then(response => {
-        if (response.data) {
-          dispatch({
-            type: types.CREATE_SUCCESS,
-            payload: response.data
-          });
-        } else if (response.data.error.code === 100) {
-        }
-      })
-      .catch(err => {
-        dispatch({
-          type: types.CREATE_ERROR,
-          payload: err
-        });
-      });
-  };
-};
+export const deletePosts = postId => ({
+  type: types.DELETE,
+  payload: { postId },
+  meta: {
+    offline: {
+      effect: {
+        url: "https://jsonplaceholder.typicode.com/posts/" + postId,
+        method: "DELETE"
+      },
+      commit: {
+        type: types.DELETE_SUCCESS,
+        meta: { postId }
+      },
+      rollback: {
+        type: types.DELETE_ERROR,
+        meta: { postId }
+      }
+    }
+  }
+});

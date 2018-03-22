@@ -12,13 +12,13 @@ class CreateHome extends React.Component {
   }
 
   handleClick = () => {
-    this.props.createHomePosts();
+    this.props.createPosts();
     this.setState({
       createdPost: this.state.createdPost + 1
     });
   };
   handleReset = () => {
-    this.props.createHomePosts();
+    this.props.createPosts();
   };
 
   render() {

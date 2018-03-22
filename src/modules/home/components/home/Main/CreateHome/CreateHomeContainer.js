@@ -9,7 +9,7 @@ const mapStateToProps = store => {
 };
 
 const mapDispatchToProps = {
-  createHomePosts: home.createHomePosts
+  createPosts: home.createPosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateHome);
