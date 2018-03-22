@@ -28,40 +28,34 @@ export const getHomePosts = () => {
   };
 };
 
-export const createHomePosts = () => {
-  return dispatch => {
-    dispatch({
-      type: types.CREATE
-    });
-    axios({
-      method: "post",
-      url: "https://jsonplaceholder.typicode.com/posts",
-      body: {
-        title: "test",
-        body: "test",
-        userId: 1
-      },
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-      .then(response => {
-        if (response.data) {
-          dispatch({
-            type: types.CREATE_SUCCESS,
-            payload: true
-          });
-        } else if (response.data.error.code === 100) {
+export const createHomePosts = () => ({
+  type: types.CREATE,
+  payload: {},
+  meta: {
+    offline: {
+      effect: {
+        url: "https://jsonplaceholder.typicode.com/posts",
+        method: "POST",
+        body: {
+          title: "test",
+          body: "test",
+          userId: 1
+        },
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
         }
-      })
-      .catch(err => {
-        dispatch({
-          type: types.CREATE_ERROR,
-          payload: err
-        });
-      });
-  };
-};
+      },
+      commit: {
+        type: types.CREATE_SUCCESS,
+        meta: {}
+      },
+      rollback: {
+        type: types.CREATE_ERROR,
+        meta: {}
+      }
+    }
+  }
+});
 
 export const updateHomePosts = () => {
   return dispatch => {
