@@ -8,8 +8,8 @@ class App extends Component {
     return (
       <Router history={history}>
         <Switch>
-          <Route path="/app" exact component={Home} />
-          <Redirect to="/app" />
+          <Route path="/" exact component={Home} />
+          <Redirect to="/" />
         </Switch>
       </Router>
     );
