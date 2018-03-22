@@ -46,7 +46,10 @@ class CreateHome extends React.Component {
           {postCreated ? (
             <span>Posted {createdPost} time!</span>
           ) : (
-            <span>Could not post, offligne?</span>
+            <span>
+              Could not post, if you are offligne, it will be posted as soon as
+              you are onligne
+            </span>
           )}
         </Grid>
       </Grid>
